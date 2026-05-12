@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary: #1A1A2E;
+    --accent: #E94560;
+    --background: #F5F5F5;
+}
+
+.inter-regular {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Inter';
+    background-color: var(--background);
+    color: white;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+button {
+    font-family: inherit;
+    padding: 10px 15px;
+    border-radius: 15px;
+    background: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px; 
+}
+
+button:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-1px);
+    text-decoration: underline;
+}
+
+.header {
+    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url("/inventory_bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 65vh;
+    margin: 10px;
+    border: 3px solid var(--accent);
+}
+
+.navbar {
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

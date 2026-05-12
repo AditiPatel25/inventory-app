@@ -3,29 +3,32 @@
 const { Client } = require("pg");
 require('dotenv').config();
 
-// const SQL = `
-// CREATE TABLE IF NOT EXISTS messages (
-//   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-//   username VARCHAR(255),
-//   text VARCHAR ( 255 ),
-//   added TIMESTAMP DEFAULT NOW()
-// );
+const SQL = `
+CREATE TABLE IF NOT EXISTS categories (
+  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  category_name VARCHAR(255)
+);
 
-// INSERT INTO messages (username, text) 
-// VALUES
-//   ('Amando', 'omg hi'),
-//   ('Charles', 'i was here'),
-//   ('Poppy', 'this is cool')`;
+CREATE TABLE IF NOT EXISTS instruments (
+  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  instrument_name VARCHAR(255),
+  price FLOAT,
+  quantity INTEGER,
+  description VARCHAR ( 255 ),
+  category_id INTEGER REFERENCES categories(id)
+);
+
+`;
 
 async function main() {
-  console.log("seeding...");
-  const client = new Client({
-    connectionString: process.env.DATABASE_URL,
-  });
-  await client.connect();
-  await client.query(SQL);
-  await client.end();
-  console.log("done");
+    console.log("seeding...");
+    const client = new Client({
+        connectionString: process.env.DATABASE_URL,
+    });
+    await client.connect();
+    await client.query(SQL);
+    await client.end();
+    console.log("done");
 }
 
 main();
