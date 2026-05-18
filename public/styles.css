@@ -189,10 +189,93 @@ tr:hover {
     background-color: rgba(0, 0, 0, 0.02);
 }
 
-.instruments-grid {
+.table-card {
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
     padding: 20px;
     margin-top: 20px;
+}
+
+.add-new {
+    color: black;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 30px;
+}
+
+form {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+input, select {
+    width: 300px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.2);
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.submit-btn {
+    background-color: var(--primary);
+    padding: 10px 25px;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background: white;
+    text-decoration: none;
+    border: 1px solid black;
+    color: black;
+    transform: translateY(0);
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.action-btn {
+    color: black;
+    padding: 0;
+    font-weight: 400;
+}
+
+.error {
+    color: red !important;
+    background-color: rgba(255,0,0,0.1);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.edit-add-btn {
+    display: flex;
+    gap: 10px;
+}
+
+.cancel-btn {
+    background-color: #666;
+    border: 1px solid #666;
+}
+
+.cancel-btn:hover {
+    background: transparent;
+    color: #444;
+    border-color: #444;
+    text-decoration: none;
 }

@@ -20,7 +20,7 @@
             <% }) %>
 
     </div>
-    <div class="instruments-grid">
+    <div class="table-card">
         <table>
             <thead>
                 <tr>
@@ -28,6 +28,7 @@
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Description</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +46,16 @@
                         <td>
                             <%= instrument.description %>
                         </td>
+                        <td>
+                            <div class="actions">
+                                <a href="/instruments/<%= instrument.id %>/edit" class="action-btn">Edit</a>
+                                <form action="/instruments/<%= instrument.id %>/delete" method="POST">
+                                    <button type="submit" class="action-btn"onclick="return confirm('Are you sure you want to delete this instrument?')">Delete</button>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
+
                     <% }) %>
             </tbody>
         </table>

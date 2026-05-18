@@ -2,30 +2,22 @@ const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
 
 const { Router } = require('express');
+const instrumentController = require("../controllers/instrumentsController");
 const instrumentsRouter = Router();
 
-instrumentsRouter.get("/new", async (req, res) => {
-    // new instrument form
-});
+// loads add instrument form
+instrumentsRouter.get("/new", instrumentController.getAddInstrumentForm);
 
-instrumentsRouter.post("/", async (req, res) => {
-    // add new instrument
-});
+// submits add instrument form
+instrumentsRouter.post("/", instrumentController.submitNewInstrument);
 
-instrumentsRouter.get("/:id", async (req, res) => {
-    // shows specific instrument
-});
+// gets edit instrument form
+instrumentsRouter.get("/:id/edit", instrumentController.getEditInstrumentForm);
 
-instrumentsRouter.get("/:id/edit", async (req, res) => {
-    // edit instrument form
-});
+// submits edit instrument form
+instrumentsRouter.post("/:id", instrumentController.submitEditInstrument);
 
-instrumentsRouter.post("/:id", async (req, res) => {
-    // submits edited instrument information
-});
-
-instrumentsRouter.post("/:id/delete", async (req, res) => {
-    // delete instrument
-});
+// delete specific instrument
+instrumentsRouter.post("/:id/delete", instrumentController.deleteInstrument);
 
 module.exports = instrumentsRouter;

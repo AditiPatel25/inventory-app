@@ -5,27 +5,18 @@ const { Router } = require('express');
 const categoryController = require("../controllers/categoriesController");
 const categoriesRouter = Router();
 
-categoriesRouter.get("/new", async (req, res) => {
-    // new category form
-});
+categoriesRouter.get("/new", categoryController.getAddCategoryForm);
 
-categoriesRouter.post("/", async (req, res) => {
-    // add new category
-});
+categoriesRouter.post("/", categoryController.submitNewCategory)
 
 // shows all instruments in that category (according to category_id)
 categoriesRouter.get("/:id", categoryController.getInstrumentsByCategory);
 
-categoriesRouter.get("/:id/edit", async (req, res) => {
-    // edit category form
-});
+// get edit category form
+categoriesRouter.get("/:id/edit", categoryController.getEditCategoryForm);
 
-categoriesRouter.post("/:id", async (req, res) => {
-    // submits edited instrument information
-});
+categoriesRouter.post("/:id", categoryController.submitEditCategory);
 
-categoriesRouter.post("/:id/delete", async (req, res) => {
-    // delete category
-});
+categoriesRouter.post("/:id/delete", categoryController.deleteCategory);
 
 module.exports = categoriesRouter;
