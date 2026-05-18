@@ -2,10 +2,9 @@ const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
 
 const { Router } = require('express');
+const indexController = require("../controllers/indexController");
 const indexRouter = Router();
 
-indexRouter.get("/", async (req, res) => {
-    res.render("index");
-});
+indexRouter.get("/", indexController.getSomeCategories);
 
 module.exports = indexRouter;

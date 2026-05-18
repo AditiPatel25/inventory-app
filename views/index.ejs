@@ -9,13 +9,20 @@
         <div class="navbar">
             <h1>StockNRoll</h1>
             <div>
-                <button>Add Category</button>
-                <button>Add Instrument</button>
+                <a href="/categories/new">Add Category</a>
+                <a href="instruments/new">Add Instrument</a>
             </div>
         </div>
     </section>
     <section class="categories">
-        
+        <% categories.forEach(category=> { %>
+            <div class="category-card">
+                <h2>
+                    <%= category.category_name %>
+                </h2>
+            </div>
+            <% }) %>
+
     </section>
 </body>
 

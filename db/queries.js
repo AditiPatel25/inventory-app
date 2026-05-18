@@ -5,6 +5,11 @@ async function getAllCategories() {
     return rows;
 }
 
+async function getSomeCategories() {
+    const { rows } = await pool.query("SELECT * FROM categories LIMIT 4");
+    return rows;
+}
+
 async function getCategoryById(id) {
     const { rows } = await pool.query("SELECT * FROM categories WHERE id = $1", [id]);
     return rows;
@@ -49,13 +54,12 @@ async function deleteInstrument(instrument_id) {
     await pool.query("DELETE FROM instruments WHERE id=$1", [instrument_id])
 }
 
-
-
-
-
 module.exports = {
     getAllCategories,
-    getCategoryById, 
+    getCategoryById,
+    addCategory,
+    updateCategory,
+    deleteCategory, 
     getAllInstruments,
     getInstrumentById, 
     addInstrument,
