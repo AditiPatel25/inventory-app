@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <section class="categorypage-header">
+        <div class="categories-navbar">
+            <%- include('partials/navbar') %>
+        </div>
+    </section>
+    <div class="filter-categories">
+        <a href="/categories" class="filter-btn <%= selectedCategory === null ? 'active' : '' %>">All</a>
+        <% categories.forEach(category=> { %>
+            <a href="/categories/<%= category.id %>"
+                class="filter-btn <%= selectedCategory === category.id ? 'active' : '' %>">
+                <%= category.category_name %>
+            </a>
+            <% }) %>
+
+    </div>
+    <div class="instruments-grid">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% instruments.forEach(instrument=> { %>
+                    <tr>
+                        <td>
+                            <%= instrument.instrument_name %>
+                        </td>
+                        <td>
+                            $<%= instrument.price %>
+                        </td>
+                        <td>
+                            <%= instrument.quantity %>
+                        </td>
+                        <td>
+                            <%= instrument.description %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

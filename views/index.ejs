@@ -6,23 +6,22 @@
 
 <body>
     <section class="header">
-        <div class="navbar">
-            <h1>StockNRoll</h1>
-            <div>
-                <a href="/categories/new">Add Category</a>
-                <a href="instruments/new">Add Instrument</a>
-            </div>
-        </div>
+        <%- include('partials/navbar') %>
     </section>
     <section class="categories">
-        <% categories.forEach(category=> { %>
-            <div class="category-card">
-                <h2>
-                    <%= category.category_name %>
-                </h2>
-            </div>
-            <% }) %>
-
+        <div class="categories-header">
+            <h2>Categories</h2>
+            <a href="/categories" class="see-all">See All Categories →</a>
+        </div>
+        <div class="categories-grid">
+            <% categories.forEach(category=> { %>
+                <a href="/categories/<%= category.id %>" class="category-card">
+                    <h3>
+                        <%= category.category_name %>
+                    </h3>
+                </a>
+                <% }) %>
+        </div>
     </section>
 </body>
 

@@ -2,6 +2,7 @@ const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
 
 const { Router } = require('express');
+const categoryController = require("../controllers/categoriesController");
 const categoriesRouter = Router();
 
 categoriesRouter.get("/new", async (req, res) => {
@@ -12,9 +13,8 @@ categoriesRouter.post("/", async (req, res) => {
     // add new category
 });
 
-categoriesRouter.get("/:id", async (req, res) => {
-    // shows all instruments in that category (according to category_id)
-});
+// shows all instruments in that category (according to category_id)
+categoriesRouter.get("/:id", categoryController.getInstrumentsByCategory);
 
 categoriesRouter.get("/:id/edit", async (req, res) => {
     // edit category form
