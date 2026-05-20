@@ -25,7 +25,7 @@ async function getEditInstrumentForm(req, res, next) {
         const instrument_id = req.params.id
         const instrument = await db.getInstrumentById(instrument_id);
         const categories = await db.getAllCategories();
-        res.render("/editInstrument", { instrument: instrument[0], categories: categories });
+        res.render("editInstrument", { instrument: instrument[0], categories: categories });
     } catch (e) {
         next(e);
     }
