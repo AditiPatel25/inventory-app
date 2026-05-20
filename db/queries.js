@@ -15,7 +15,7 @@ async function addCategory(category_name) {
 }
 
 async function updateCategory(category_id, category_name) {
-    await pool.query("UPDATE instruments SET category_name = $1 WHERE id = $2", [category_name, category_id])
+    await pool.query("UPDATE categories SET category_name = $1 WHERE id = $2", [category_name, category_id])
 }
 
 async function deleteCategory(category_id) {

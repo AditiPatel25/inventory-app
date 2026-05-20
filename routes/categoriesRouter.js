@@ -5,7 +5,7 @@ const { Router } = require('express');
 const categoryController = require("../controllers/categoriesController");
 const categoriesRouter = Router();
 
-categoriesRouter.get("/new", categoryController.getAddCategoryForm);
+categoriesRouter.get("/manage", categoryController.getManageCategoriesPage);
 
 categoriesRouter.post("/", categoryController.submitNewCategory)
 

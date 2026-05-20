@@ -25,7 +25,7 @@ async function getEditInstrumentForm(req, res, next) {
         const instrument_id = req.params.id
         const instrument = await db.getInstrumentById(instrument_id);
         const categories = await db.getAllCategories();
-        res.render("editInstrument", { instrument: instrument[0], categories: categories });
+        res.render("editInstrument", { instrument: instrument[0], categories: categories, error: req.query.error });
     } catch (e) {
         next(e);
     }
@@ -34,6 +34,9 @@ async function getEditInstrumentForm(req, res, next) {
 async function submitEditInstrument(req, res, next) {
     try {
         const instrument_id = req.params.id;
+        if (req.body.adminPassword !== process.env.ADMIN_PASSWORD) {
+            return res.redirect(`/instruments/${instrument_id}/edit?error=Incorrect password`);
+        }
         const { instrument_name, price, quantity, description, category_id } = req.body;
         await db.updateInstrument(instrument_id, instrument_name, price, quantity, description, category_id)
         res.redirect("/categories");
@@ -45,6 +48,10 @@ async function submitEditInstrument(req, res, next) {
 async function deleteInstrument(req, res, next) {
     try {
         const instrument_id = req.params.id;
+        if (req.body.adminPassword !== process.env.ADMIN_PASSWORD) {
+            return res.redirect("/categories?error=Incorrect password");
+        }
+        
         await db.deleteInstrument(instrument_id)
         res.redirect("/categories");
     } catch (e) {
@@ -55,9 +62,9 @@ async function deleteInstrument(req, res, next) {
 
 
 module.exports = {
-    submitNewInstrument, 
-    getAddInstrumentForm, 
-    getEditInstrumentForm, 
+    submitNewInstrument,
+    getAddInstrumentForm,
+    getEditInstrumentForm,
     submitEditInstrument,
     deleteInstrument
 };

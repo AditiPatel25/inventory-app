@@ -11,29 +11,35 @@
         </div>
     </section>
     <section class="add-new">
+        <% if (error) { %>
+            <p class="error">
+                <%= error %>
+            </p>
+            <% } %>
         <h1>Edit Instrument</h1>
-        <form action="/instruments/<%= instrument.id %>" method="POST">
-            <label for="instrument_name">Name</label>
-            <input type="text" name="instrument_name" id="instrument_name" value="<%= instrument.instrument_name %>">
-            <label for="price">Price</label>
-            <input type="text" name="price" id="price" value="<%= instrument.price %>">
-            <label for="quantity">Quantity</label>
-            <input type="text" name="quantity" id="quantity" value="<%= instrument.quantity %>">
-            <label for="description">Description</label>
-            <input type="text" name="description" id="description" value="<%= instrument.description %>">
-            <label for="category">Category</label>
-            <select name="category_id" id="category_id">
-                <% categories.forEach(category=> { %>
-                    <option value="<%= category.id %>">
-                        <%= category.category_name %>
-                    </option>
-                    <% }) %>
-            </select>
-            <button type="submit" class="submit-btn">Submit</button>
-        </form>
+                <form action="/instruments/<%= instrument.id %>" method="POST">
+                    <label for="instrument_name">Name</label>
+                    <input type="text" name="instrument_name" id="instrument_name"
+                        value="<%= instrument.instrument_name %>">
+                    <label for="price">Price</label>
+                    <input type="text" name="price" id="price" value="<%= instrument.price %>">
+                    <label for="quantity">Quantity</label>
+                    <input type="text" name="quantity" id="quantity" value="<%= instrument.quantity %>">
+                    <label for="description">Description</label>
+                    <input type="text" name="description" id="description" value="<%= instrument.description %>">
+                    <label for="category">Category</label>
+                    <select name="category_id" id="category_id">
+                        <% categories.forEach(category=> { %>
+                            <option value="<%= category.id %>">
+                                <%= category.category_name %>
+                            </option>
+                            <% }) %>
+                    </select>
+                    <button type="button" class="submit-btn" onclick="openModal(this.closest('form'))">Submit</button>
+                </form>
 
     </section>
-
+    <%- include('partials/adminModal') %>
 </body>
 
 </html>

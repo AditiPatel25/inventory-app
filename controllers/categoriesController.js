@@ -5,7 +5,7 @@ async function getCategoriesPage(req, res, next) {
     try {
         const categories = await db.getAllCategories();
         const instruments = await db.getAllInstruments();
-        res.render("categories", { categories: categories, instruments: instruments, selectedCategory: null });
+        res.render("categories", { categories: categories, instruments: instruments, selectedCategory: null, error: req.query.error  });
     } catch (e) {
         next(e);
     }
@@ -14,18 +14,20 @@ async function getCategoriesPage(req, res, next) {
 async function getInstrumentsByCategory(req, res, next) {
     try {
         const { id } = req.params;
+        console.log(id)
         const categories = await db.getAllCategories();
-        const instruments = await db.getInstrumentByCategory(id)
+        const instruments = await db.getInstrumentByCategory(id);
+        console.log(instruments);
         res.render("categories", { selectedCategory: parseInt(id), instruments: instruments, categories: categories });
     } catch (e) {
         next(e);
     }
 }
 
-async function getAddCategoryForm(req, res, next) {
+async function getManageCategoriesPage(req, res, next) {
     try {
         const categories = await db.getAllCategories();
-        res.render("manageCategories", { categories: categories, editing: false });
+        res.render("manageCategories", { categories: categories, editing: false, error: req.query.error  });
     } catch (e) {
         next(e);
     }
@@ -46,7 +48,7 @@ async function getEditCategoryForm(req, res, next) {
         const category_id = req.params.id;
         const category = await db.getCategoryById(category_id);
         const categories = await db.getAllCategories();
-        res.render("manageCategories", { categories, category: category[0], editing: true });
+        res.render("manageCategories", { categories, category: category[0], editing: true, error: req.query.error });
     } catch (e) {
         next(e);
     }
@@ -55,6 +57,9 @@ async function getEditCategoryForm(req, res, next) {
 async function submitEditCategory(req, res, next) {
     try {
         const category_id = req.params.id;
+        if (req.body.adminPassword !== process.env.ADMIN_PASSWORD) {
+            return res.redirect(`/categories/${category_id}/edit?error=Incorrect password`);
+        }
         const { category_name } = req.body;
         await db.updateCategory(category_id, category_name)
         res.redirect("/categories");
@@ -66,6 +71,9 @@ async function submitEditCategory(req, res, next) {
 async function deleteCategory(req, res, next) {
     try {
         const category_id = req.params.id;
+        if (req.body.adminPassword !== process.env.ADMIN_PASSWORD) {
+            return res.redirect(`/categories/manage?error=Incorrect password`);
+        }
         const instruments = await db.getInstrumentByCategory(category_id);
         if (instruments.length > 0) {
             const categories = await db.getAllCategories();
@@ -87,7 +95,7 @@ async function deleteCategory(req, res, next) {
 module.exports = {
     getCategoriesPage,
     getInstrumentsByCategory,
-    getAddCategoryForm,
+    getManageCategoriesPage,
     submitNewCategory,
     getEditCategoryForm,
     submitEditCategory,

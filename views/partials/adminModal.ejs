@@ -1,0 +1,38 @@
+<div id="adminModal" class="modal-overlay" style="display:none;">
+    <div class="modal">
+        <h2>Admin Password</h2>
+        <input type="password" id="adminPassword" placeholder="Enter password">
+        <button id="confirmBtn" onclick="confirmAction()">Confirm</button>
+        <button onclick="closeModal()">Cancel</button>
+    </div>
+</div>
+</body>
+<script>
+    let pendingForm = null;
+    function openModal(form) {
+        pendingForm = form;
+        document.getElementById('adminModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('adminModal').style.display = 'none';
+        document.getElementById('adminPassword').value = '';
+        pendingForm = null;
+    }
+
+    function confirmAction() {
+        console.log("confirmAction called");
+        const password = document.getElementById('adminPassword').value;
+        console.log("password:", password);
+        var hiddenInput = document.createElement("input");
+
+        hiddenInput.setAttribute("type", "hidden");
+        hiddenInput.setAttribute("name", "adminPassword");
+        hiddenInput.setAttribute("value", password);
+
+        pendingForm.appendChild(hiddenInput);
+        pendingForm.submit()
+
+
+    }
+</script>
