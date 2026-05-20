@@ -14,7 +14,7 @@ async function submitNewInstrument(req, res, next) {
     try {
         const { instrument_name, price, quantity, description, category_id } = req.body;
         await db.addInstrument(instrument_name, price, quantity, description, category_id)
-        res.redirect("categories");
+        res.redirect("/categories");
     } catch (e) {
         next(e);
     }

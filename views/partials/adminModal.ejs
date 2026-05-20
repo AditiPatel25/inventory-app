@@ -6,7 +6,6 @@
         <button onclick="closeModal()">Cancel</button>
     </div>
 </div>
-</body>
 <script>
     let pendingForm = null;
     function openModal(form) {
@@ -21,10 +20,8 @@
     }
 
     function confirmAction() {
-        console.log("confirmAction called");
         const password = document.getElementById('adminPassword').value;
-        console.log("password:", password);
-        var hiddenInput = document.createElement("input");
+        const hiddenInput = document.createElement("input");
 
         hiddenInput.setAttribute("type", "hidden");
         hiddenInput.setAttribute("name", "adminPassword");
@@ -32,7 +29,5 @@
 
         pendingForm.appendChild(hiddenInput);
         pendingForm.submit()
-
-
     }
 </script>

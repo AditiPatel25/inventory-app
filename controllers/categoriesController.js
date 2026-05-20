@@ -14,10 +14,8 @@ async function getCategoriesPage(req, res, next) {
 async function getInstrumentsByCategory(req, res, next) {
     try {
         const { id } = req.params;
-        console.log(id)
         const categories = await db.getAllCategories();
         const instruments = await db.getInstrumentByCategory(id);
-        console.log(instruments);
         res.render("categories", { selectedCategory: parseInt(id), instruments: instruments, categories: categories });
     } catch (e) {
         next(e);
@@ -37,7 +35,7 @@ async function submitNewCategory(req, res, next) {
     try {
         const { category_name } = req.body;
         await db.addCategory(category_name)
-        res.redirect("categories");
+        res.redirect("/categories");
     } catch (e) {
         next(e);
     }

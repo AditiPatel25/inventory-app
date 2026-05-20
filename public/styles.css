@@ -11,18 +11,14 @@
     --background: #F5F5F5;
 }
 
-.inter-regular {
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-}
-
 body {
     font-family: 'Inter';
     background-color: var(--background);
-    color: white;
     margin: 15px;
+    color: black;
 }
+
+/* HOME PAGE */
 
 .logo {
     font-size: 2.5rem;
@@ -68,7 +64,6 @@ a:hover {
     background-repeat: no-repeat;
     height: 65vh;
     border-radius: 12px;
-    /* border: 3px solid var(--primary); */
 }
 
 .navbar {
@@ -77,6 +72,8 @@ a:hover {
     justify-content: space-between;
     align-items: center;
 }
+
+/* CATEGORIES SECTION ON HOMEPAGE */
 
 .categories {
     background-color: var(--primary);
@@ -89,6 +86,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: white;
 }
 
 .categories-grid {
@@ -100,7 +98,6 @@ a:hover {
 
 .category-card {
     padding: 50px;
-    background-color: rgb(207, 202, 202);
     border-radius: 15px;
     flex: 1;
     text-align: center;
@@ -130,6 +127,8 @@ a:hover {
     margin-bottom: 20px;
 }
 
+/* CATEGORIES PAGE */
+
 .filter-categories {
     border-radius: 12px;
     padding: 10px;
@@ -141,7 +140,6 @@ a:hover {
 
 .filter-btn {
     color: black;
-    border-radius: 12px;
     border: 1px solid black;
     border-radius: 20px;
     padding: 8px 16px;
@@ -163,7 +161,6 @@ table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.95rem;
-    color: black;
 }
 
 thead {
@@ -197,8 +194,9 @@ tr:hover {
     margin-top: 20px;
 }
 
+/* ADD INSTRUMENT / MANAGE CATEGORIES PAGE */
+
 .add-new {
-    color: black;
     text-align: center;
     border: 1px solid black;
     border-radius: 12px;
@@ -279,6 +277,8 @@ input:focus, select:focus {
     border-color: #444;
     text-decoration: none;
 }
+
+/* ADMIN MODAL */
 
 .modal-overlay {
     position: fixed;
