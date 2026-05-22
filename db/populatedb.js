@@ -39,14 +39,17 @@ VALUES
 `;
 
 async function main() {
-    console.log("seeding...");
-    const client = new Client({
-        connectionString: process.env.DATABASE_URL,
-    });
-    await client.connect();
-    await client.query(SQL);
-    await client.end();
-    console.log("done");
+  console.log("seeding...");
+  const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  });
+  await client.connect();
+  await client.query(SQL);
+  await client.end();
+  console.log("done");
 }
 
 main();
