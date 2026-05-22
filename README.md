@@ -15,3 +15,7 @@ Users can:
 - **Backend:** Node.js, Express
 - **Database:** PostgreSQL
 - **Styling:** CSS
+
+### Live Demo
+
+[View Live Site](https://inventory-app-hn10.onrender.com)
